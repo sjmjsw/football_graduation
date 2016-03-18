@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F042EB11C9BFC6A00DA48E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F042EB01C9BFC6A00DA48E1 /* main.m */; };
+		0F042EB41C9BFC6A00DA48E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F042EB31C9BFC6A00DA48E1 /* AppDelegate.m */; };
+		0F042EB71C9BFC6A00DA48E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F042EB61C9BFC6A00DA48E1 /* ViewController.m */; };
+		0F042EBA1C9BFC6A00DA48E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F042EB81C9BFC6A00DA48E1 /* Main.storyboard */; };
+		0F042EBC1C9BFC6A00DA48E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F042EBB1C9BFC6A00DA48E1 /* Assets.xcassets */; };
+		0F042EBF1C9BFC6A00DA48E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F042EBD1C9BFC6A00DA48E1 /* LaunchScreen.storyboard */; };
+		0F042ECA1C9BFC6A00DA48E1 /* Football_NewProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F042EC91C9BFC6A00DA48E1 /* Football_NewProjectTests.m */; };
+		0F042ED51C9BFC6A00DA48E1 /* Football_NewProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F042ED41C9BFC6A00DA48E1 /* Football_NewProjectUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0F042EC61C9BFC6A00DA48E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F042EA41C9BFC6A00DA48E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F042EAB1C9BFC6A00DA48E1;
+			remoteInfo = Football_NewProject;
+		};
+		0F042ED11C9BFC6A00DA48E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F042EA41C9BFC6A00DA48E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F042EAB1C9BFC6A00DA48E1;
+			remoteInfo = Football_NewProject;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F042EAC1C9BFC6A00DA48E1 /* Football_NewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Football_NewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F042EB01C9BFC6A00DA48E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0F042EB21C9BFC6A00DA48E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0F042EB31C9BFC6A00DA48E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0F042EB51C9BFC6A00DA48E1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0F042EB61C9BFC6A00DA48E1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0F042EB91C9BFC6A00DA48E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0F042EBB1C9BFC6A00DA48E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0F042EBE1C9BFC6A00DA48E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0F042EC01C9BFC6A00DA48E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F042EC51C9BFC6A00DA48E1 /* Football_NewProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Football_NewProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F042EC91C9BFC6A00DA48E1 /* Football_NewProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Football_NewProjectTests.m; sourceTree = "<group>"; };
+		0F042ECB1C9BFC6A00DA48E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F042ED01C9BFC6A00DA48E1 /* Football_NewProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Football_NewProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F042ED41C9BFC6A00DA48E1 /* Football_NewProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Football_NewProjectUITests.m; sourceTree = "<group>"; };
+		0F042ED61C9BFC6A00DA48E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F042EA91C9BFC6A00DA48E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F042EC21C9BFC6A00DA48E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F042ECD1C9BFC6A00DA48E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F042EA31C9BFC6A00DA48E1 = {
+			isa = PBXGroup;
+			children = (
+				0F042EAE1C9BFC6A00DA48E1 /* Football_NewProject */,
+				0F042EC81C9BFC6A00DA48E1 /* Football_NewProjectTests */,
+				0F042ED31C9BFC6A00DA48E1 /* Football_NewProjectUITests */,
+				0F042EAD1C9BFC6A00DA48E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0F042EAD1C9BFC6A00DA48E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F042EAC1C9BFC6A00DA48E1 /* Football_NewProject.app */,
+				0F042EC51C9BFC6A00DA48E1 /* Football_NewProjectTests.xctest */,
+				0F042ED01C9BFC6A00DA48E1 /* Football_NewProjectUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0F042EAE1C9BFC6A00DA48E1 /* Football_NewProject */ = {
+			isa = PBXGroup;
+			children = (
+				0F042EB21C9BFC6A00DA48E1 /* AppDelegate.h */,
+				0F042EB31C9BFC6A00DA48E1 /* AppDelegate.m */,
+				0F042EB51C9BFC6A00DA48E1 /* ViewController.h */,
+				0F042EB61C9BFC6A00DA48E1 /* ViewController.m */,
+				0F042EB81C9BFC6A00DA48E1 /* Main.storyboard */,
+				0F042EBB1C9BFC6A00DA48E1 /* Assets.xcassets */,
+				0F042EBD1C9BFC6A00DA48E1 /* LaunchScreen.storyboard */,
+				0F042EC01C9BFC6A00DA48E1 /* Info.plist */,
+				0F042EAF1C9BFC6A00DA48E1 /* Supporting Files */,
+			);
+			path = Football_NewProject;
+			sourceTree = "<group>";
+		};
+		0F042EAF1C9BFC6A00DA48E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0F042EB01C9BFC6A00DA48E1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0F042EC81C9BFC6A00DA48E1 /* Football_NewProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F042EC91C9BFC6A00DA48E1 /* Football_NewProjectTests.m */,
+				0F042ECB1C9BFC6A00DA48E1 /* Info.plist */,
+			);
+			path = Football_NewProjectTests;
+			sourceTree = "<group>";
+		};
+		0F042ED31C9BFC6A00DA48E1 /* Football_NewProjectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0F042ED41C9BFC6A00DA48E1 /* Football_NewProjectUITests.m */,
+				0F042ED61C9BFC6A00DA48E1 /* Info.plist */,
+			);
+			path = Football_NewProjectUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0F042EAB1C9BFC6A00DA48E1 /* Football_NewProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F042ED91C9BFC6A00DA48E1 /* Build configuration list for PBXNativeTarget "Football_NewProject" */;
+			buildPhases = (
+				0F042EA81C9BFC6A00DA48E1 /* Sources */,
+				0F042EA91C9BFC6A00DA48E1 /* Frameworks */,
+				0F042EAA1C9BFC6A00DA48E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Football_NewProject;
+			productName = Football_NewProject;
+			productReference = 0F042EAC1C9BFC6A00DA48E1 /* Football_NewProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0F042EC41C9BFC6A00DA48E1 /* Football_NewProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F042EDC1C9BFC6A00DA48E1 /* Build configuration list for PBXNativeTarget "Football_NewProjectTests" */;
+			buildPhases = (
+				0F042EC11C9BFC6A00DA48E1 /* Sources */,
+				0F042EC21C9BFC6A00DA48E1 /* Frameworks */,
+				0F042EC31C9BFC6A00DA48E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F042EC71C9BFC6A00DA48E1 /* PBXTargetDependency */,
+			);
+			name = Football_NewProjectTests;
+			productName = Football_NewProjectTests;
+			productReference = 0F042EC51C9BFC6A00DA48E1 /* Football_NewProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0F042ECF1C9BFC6A00DA48E1 /* Football_NewProjectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F042EDF1C9BFC6A00DA48E1 /* Build configuration list for PBXNativeTarget "Football_NewProjectUITests" */;
+			buildPhases = (
+				0F042ECC1C9BFC6A00DA48E1 /* Sources */,
+				0F042ECD1C9BFC6A00DA48E1 /* Frameworks */,
+				0F042ECE1C9BFC6A00DA48E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F042ED21C9BFC6A00DA48E1 /* PBXTargetDependency */,
+			);
+			name = Football_NewProjectUITests;
+			productName = Football_NewProjectUITests;
+			productReference = 0F042ED01C9BFC6A00DA48E1 /* Football_NewProjectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0F042EA41C9BFC6A00DA48E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = maleGod;
+				TargetAttributes = {
+					0F042EAB1C9BFC6A00DA48E1 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = GPV2SNSGBM;
+					};
+					0F042EC41C9BFC6A00DA48E1 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = GPV2SNSGBM;
+						TestTargetID = 0F042EAB1C9BFC6A00DA48E1;
+					};
+					0F042ECF1C9BFC6A00DA48E1 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = GPV2SNSGBM;
+						TestTargetID = 0F042EAB1C9BFC6A00DA48E1;
+					};
+				};
+			};
+			buildConfigurationList = 0F042EA71C9BFC6A00DA48E1 /* Build configuration list for PBXProject "Football_NewProject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0F042EA31C9BFC6A00DA48E1;
+			productRefGroup = 0F042EAD1C9BFC6A00DA48E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0F042EAB1C9BFC6A00DA48E1 /* Football_NewProject */,
+				0F042EC41C9BFC6A00DA48E1 /* Football_NewProjectTests */,
+				0F042ECF1C9BFC6A00DA48E1 /* Football_NewProjectUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F042EAA1C9BFC6A00DA48E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F042EBF1C9BFC6A00DA48E1 /* LaunchScreen.storyboard in Resources */,
+				0F042EBC1C9BFC6A00DA48E1 /* Assets.xcassets in Resources */,
+				0F042EBA1C9BFC6A00DA48E1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F042EC31C9BFC6A00DA48E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F042ECE1C9BFC6A00DA48E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F042EA81C9BFC6A00DA48E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F042EB71C9BFC6A00DA48E1 /* ViewController.m in Sources */,
+				0F042EB41C9BFC6A00DA48E1 /* AppDelegate.m in Sources */,
+				0F042EB11C9BFC6A00DA48E1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F042EC11C9BFC6A00DA48E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F042ECA1C9BFC6A00DA48E1 /* Football_NewProjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F042ECC1C9BFC6A00DA48E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F042ED51C9BFC6A00DA48E1 /* Football_NewProjectUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0F042EC71C9BFC6A00DA48E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F042EAB1C9BFC6A00DA48E1 /* Football_NewProject */;
+			targetProxy = 0F042EC61C9BFC6A00DA48E1 /* PBXContainerItemProxy */;
+		};
+		0F042ED21C9BFC6A00DA48E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F042EAB1C9BFC6A00DA48E1 /* Football_NewProject */;
+			targetProxy = 0F042ED11C9BFC6A00DA48E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0F042EB81C9BFC6A00DA48E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F042EB91C9BFC6A00DA48E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0F042EBD1C9BFC6A00DA48E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F042EBE1C9BFC6A00DA48E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0F042ED71C9BFC6A00DA48E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0F042ED81C9BFC6A00DA48E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0F042EDA1C9BFC6A00DA48E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Football_NewProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maleGodIsMe.Football-NewProject";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0F042EDB1C9BFC6A00DA48E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Football_NewProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maleGodIsMe.Football-NewProject";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0F042EDD1C9BFC6A00DA48E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Football_NewProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maleGodIsMe.Football-NewProjectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Football_NewProject.app/Football_NewProject";
+			};
+			name = Debug;
+		};
+		0F042EDE1C9BFC6A00DA48E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Football_NewProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maleGodIsMe.Football-NewProjectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Football_NewProject.app/Football_NewProject";
+			};
+			name = Release;
+		};
+		0F042EE01C9BFC6A00DA48E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Football_NewProjectUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maleGodIsMe.Football-NewProjectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Football_NewProject;
+			};
+			name = Debug;
+		};
+		0F042EE11C9BFC6A00DA48E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Football_NewProjectUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maleGodIsMe.Football-NewProjectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Football_NewProject;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F042EA71C9BFC6A00DA48E1 /* Build configuration list for PBXProject "Football_NewProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F042ED71C9BFC6A00DA48E1 /* Debug */,
+				0F042ED81C9BFC6A00DA48E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F042ED91C9BFC6A00DA48E1 /* Build configuration list for PBXNativeTarget "Football_NewProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F042EDA1C9BFC6A00DA48E1 /* Debug */,
+				0F042EDB1C9BFC6A00DA48E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0F042EDC1C9BFC6A00DA48E1 /* Build configuration list for PBXNativeTarget "Football_NewProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F042EDD1C9BFC6A00DA48E1 /* Debug */,
+				0F042EDE1C9BFC6A00DA48E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0F042EDF1C9BFC6A00DA48E1 /* Build configuration list for PBXNativeTarget "Football_NewProjectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F042EE01C9BFC6A00DA48E1 /* Debug */,
+				0F042EE11C9BFC6A00DA48E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0F042EA41C9BFC6A00DA48E1 /* Project object */;
+}
