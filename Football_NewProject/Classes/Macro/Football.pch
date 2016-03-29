@@ -1,0 +1,16 @@
+//
+//  Football.pch
+//  Football_NewProject
+//
+//  Created by Guitar on 3/18/16.
+//  Copyright © 2016 maleGod. All rights reserved.
+//
+
+#ifndef Football_pch
+#define Football_pch
+
+#define mScreen_bounds [UIScreen mainScreen].bounds
+#import "ConnectManager.h"
+#import "UIImageView+WebCache.h"
+
+#endif /* Football_pch */

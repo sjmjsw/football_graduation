@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  SerieAViewController.h
 //  Football_NewProject
 //
-//  Created by Guitar on 3/18/16.
+//  Created by Guitar on 3/29/16.
 //  Copyright © 2016 maleGod. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SerieAViewController : UIViewController
 
 @end
-
