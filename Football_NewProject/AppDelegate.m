@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TabBarController.h"
+#import "ReachabilityManager.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,10 @@
     TabBarController * tabBar = [[TabBarController alloc]init];
     UINavigationController * tabBarNC = [[UINavigationController alloc]initWithRootViewController:tabBar];
     self.window.rootViewController = tabBarNC;
+    [[ReachabilityManager sharedManager].wifi startNotifier];
+    [[ReachabilityManager sharedManager].dataTraffic startNotifier];
+    [self checkNetworkStatus];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChange) name:kReachabilityChangedNotification object:nil];
     return YES;
 }
 
@@ -47,6 +52,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)networkStatusChange {
+    [self checkNetworkStatus];
+}
+
+- (void)checkNetworkStatus {
+    if ([[ReachabilityManager sharedManager].wifi currentReachabilityStatus]) {
+        [ReachabilityManager sharedManager].havingNet = YES;
+        NSLog(@"wifi");
+    }else if ([[ReachabilityManager sharedManager].dataTraffic currentReachabilityStatus]) {
+        [ReachabilityManager sharedManager].havingNet = YES;
+        NSLog(@"流量");
+    }else {
+        [ReachabilityManager sharedManager].havingNet = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NetworkStatusIsNo" object:nil];
+        NSLog(@"没网");
+    }
 }
 
 @end

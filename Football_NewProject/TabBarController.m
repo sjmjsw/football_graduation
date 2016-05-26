@@ -22,10 +22,13 @@
     // Do any additional setup after loading the view.
     MatchViewController * matchVC = [[MatchViewController alloc]init];
     matchVC.title = @"首页";
+    matchVC.tabBarItem.image = [UIImage imageNamed:@"football.png"];
     NewsAndVideosViewController * nvVC = [[NewsAndVideosViewController alloc]init];
     nvVC.title = @"新闻";
+    nvVC.tabBarItem.image = [UIImage imageNamed:@"Trophy.png"];
     MatchDataViewController * mdVC = [[MatchDataViewController alloc]init];
     mdVC.title = @"积分榜";
+    mdVC.tabBarItem.image = [UIImage imageNamed:@"bar_graph.png"];
     self.viewControllers = @[matchVC, nvVC, mdVC];
     self.tabBar.tintColor = [UIColor colorWithRed:0.512 green:0.920 blue:0.549 alpha:1.000];
 }

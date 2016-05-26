@@ -12,5 +12,6 @@
 #define mScreen_bounds [UIScreen mainScreen].bounds
 #import "ConnectManager.h"
 #import "UIImageView+WebCache.h"
+#import "FMDB.h"
 
 #endif /* Football_pch */

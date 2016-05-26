@@ -10,9 +10,8 @@
 #import "NewsTableViewCell.h"
 #import "NewsModel.h"
 
-@interface VideosTableViewController () {
-    NSMutableArray * _allDataArray;
-}
+@interface VideosTableViewController ()
+@property (nonatomic, strong) NSMutableArray *allDataArray;
 
 @end
 
@@ -25,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"news"];
-    _allDataArray = [NSMutableArray array];
+    __weak typeof(self)weakSelf = self;
     [[ConnectManager sharedManager] getDataWithURL:@"http://kapi.zucaitong.com/news?last_id=0&page_size=20&type=2" params:nil success:^(id responseObj) {
         if (responseObj) {
             NSArray * arr = responseObj[@"data"];
@@ -37,7 +36,7 @@
                 [nModel setValue:dic[@"id"] forKey:@"id"];
                 [nModel setValue:dic[@"source"] forKey:@"source"];
                 [nModel setValue:dic[@"publish_time"] forKey:@"publish_time"];
-                [_allDataArray addObject:nModel];
+                [weakSelf.allDataArray addObject:nModel];
             }
             [self.tableView reloadData];
         }
@@ -58,12 +57,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _allDataArray.count;
+    return self.allDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"news" forIndexPath:indexPath];
-    NewsModel * nModel = _allDataArray[indexPath.row];
+    NewsModel * nModel = self.allDataArray[indexPath.row];
     [cell.newsImageView sd_setImageWithURL:[NSURL URLWithString:nModel.pic_small] placeholderImage:[UIImage imageNamed:@""] options:0];
     cell.titleLabel.text = nModel.title;
     cell.contentLabel.text = nModel.summary;
@@ -72,6 +71,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 75;
+}
+
+#pragma mark -- 懒加载
+- (NSMutableArray *)allDataArray {
+    if (_allDataArray == nil) {
+        _allDataArray = [NSMutableArray array];
+    }
+    return _allDataArray;
 }
 
 /*

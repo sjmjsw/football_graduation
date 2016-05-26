@@ -10,51 +10,55 @@
 #import "PhotoTableViewCell.h"
 #import "MatchTableViewCell.h"
 
-@interface MatchViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate> {
-    UITableView * _matchTableView;
-    // 存放图片数据的数组
-    NSMutableArray * _photoArray;
-    // 存放赛事数组的数组
-    NSMutableArray * _matchArray;
-    // 存放时间的数组
-    NSMutableArray * _timeArray;
-}
+@interface MatchViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@property (nonatomic, assign) BOOL isFirst;
+@property (nonatomic, strong) UITableView *matchTableView;
+// 存放赛事数组的数组
+@property (nonatomic, strong) NSMutableArray *matchArray;
+// 存放图片数据的数组
+@property (nonatomic, strong) NSMutableArray *photoArray;
+// 存放时间的数组
+@property (nonatomic, strong) NSMutableArray *timeArray;
 
 @end
 
 @implementation MatchViewController
 
 - (void)loadView {
-    _matchTableView = [[UITableView alloc]initWithFrame:mScreen_bounds style:(UITableViewStylePlain)];
-    self.view = _matchTableView;
+    self.view = self.matchTableView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    _matchTableView.contentInset = UIEdgeInsetsMake(0, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    if (self.isFirst == NO) {
+        self.edgesForExtendedLayout = UIRectEdgeAll;
+        self.matchTableView.contentInset = UIEdgeInsetsMake(42, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    }
+    self.isFirst = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 遵守代理
-    _matchTableView.delegate = self;
-    _matchTableView.dataSource = self;
-    _matchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    self.matchTableView.delegate = self;
+    self.matchTableView.dataSource = self;
+    self.matchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // 注册cell
-    [_matchTableView registerNib:[UINib nibWithNibName:@"PhotoTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"photo"];
-    [_matchTableView registerNib:[UINib nibWithNibName:@"MatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"match"];
-    // 初始化数组
-    _photoArray = [NSMutableArray array];
-    _matchArray = [NSMutableArray array];
-    _timeArray = [NSMutableArray array];
+    [self.matchTableView registerNib:[UINib nibWithNibName:@"PhotoTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"photo"];
+    [self.matchTableView registerNib:[UINib nibWithNibName:@"MatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"match"];
+    // 请求数据
+    [self connectToGainMatchData];
+}
+
+- (void)connectToGainMatchData {
+    // 弱化self
+    __weak typeof(self)weakSelf = self;
     // 加载比赛数据
     [[ConnectManager sharedManager] getDataWithURL:@"http://kapi.zucaitong.com/match/recommendedv2" params:nil success:^(id responseObj) {
         if (responseObj) {
             // NSLog(@"%@", responseObj);
-            _timeArray = responseObj[@"data"];
-            NSDictionary * dict = _timeArray.firstObject;
+            weakSelf.timeArray = responseObj[@"data"];
+            NSDictionary * dict = weakSelf.timeArray.firstObject;
             NSString * firMatch_time = dict[@"match_time"];
             NSDate * firDate = [[NSDate alloc]initWithTimeIntervalSince1970:firMatch_time.integerValue];
             // NSLog(@"date:%@", firDate);
@@ -62,7 +66,7 @@
             formatter.dateFormat = @"yyyy-MM-dd";
             NSString * timeStr = [formatter stringFromDate:firDate];
             NSMutableArray * tempArray = [NSMutableArray array];
-            for (NSDictionary * dic in _timeArray) {
+            for (NSDictionary * dic in weakSelf.timeArray) {
                 NSString * match_time = dic[@"match_time"];
                 
                 NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:match_time.integerValue];
@@ -71,33 +75,28 @@
                 formatter.dateFormat = @"yyyy-MM-dd";
                 NSString * dateString = [formatter stringFromDate:date];
                 if (![timeStr isEqualToString:dateString]) {
-                    [_matchArray addObject:tempArray];
+                    [weakSelf.matchArray addObject:tempArray];
                     tempArray = [NSMutableArray array];
                     timeStr = dateString;
                 }
                 [tempArray addObject:dic];
             }
-            [_matchTableView reloadData];
+            [weakSelf.matchTableView reloadData];
         }
     } failure:^(NSError *error) {
         
     }];
-    
-    UIFont * font = [UIFont fontWithName:@"Palatino-Roman" size:14.0f];
-    NSDictionary * attrsDictionary = @{NSFontAttributeName : font};
-    
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _matchArray.count + 1;
+    return self.matchArray.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
     }else {
-        return [_matchArray[section - 1] count];
+        return [self.matchArray[section - 1] count];
     }
 }
 
@@ -110,6 +109,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        // 轮播图
         static NSString * photoCellIndentifier = @"photo";
         PhotoTableViewCell * photoCell = [tableView dequeueReusableCellWithIdentifier:photoCellIndentifier forIndexPath:indexPath];
         if (photoCell == nil) {
@@ -119,17 +119,18 @@
         [self photoScrollView:photoCell.photoScrollView];
         photoCell.photoScrollView.showsVerticalScrollIndicator = NO;
         photoCell.photoScrollView.showsHorizontalScrollIndicator = NO;
+        __weak typeof(self)weakSelf = self;
         [[ConnectManager sharedManager] getDataWithURL:@"http://kapi.zucaitong.com/ad/banner" params:nil success:^(id responseObj) {
             if (responseObj) {
-                _photoArray = responseObj[@"data"];
+                weakSelf.photoArray = responseObj[@"data"];
                 
                 NSMutableArray * picArray = [NSMutableArray array];
-                for (NSDictionary * dic in _photoArray) {
+                for (NSDictionary * dic in weakSelf.photoArray) {
                     NSString * pic = dic[@"pic"];
                     [picArray addObject:pic];
                 }
                 
-                if (_photoArray.count != 0) {
+                if (weakSelf.photoArray.count != 0) {
                     
                     photoCell.photoScrollView.contentSize = CGSizeMake(mScreen_bounds.size.width * (picArray.count + 1), photoCell.photoScrollView.contentSize.height);
                     
@@ -138,15 +139,6 @@
                         [imageView0 sd_setImageWithURL:[NSURL URLWithString:picArray[picArray.count - 2]] placeholderImage:[UIImage imageNamed:@""] options:0];
                     });
                     [photoCell.photoScrollView addSubview:imageView0];
-//                    int i = 1;
-//                    for (NSString * picStr in picArray) {
-//                        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(mScreen_bounds.size.width * i, 0, mScreen_bounds.size.width, photoCell.photoScrollView.contentSize.height)];
-//                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                            [imageView sd_setImageWithURL:[NSURL URLWithString:picStr] placeholderImage:[UIImage imageNamed:@""] options:0];
-//                        });
-//                        [photoCell.photoScrollView addSubview:imageView];
-//                        i++;
-//                    }
                     NSInteger j = 1;
                     for (NSInteger i = 0; i < picArray.count - 1; i++) {
                         NSString * picStr = picArray[i];
@@ -169,17 +161,18 @@
         }];
         
         return photoCell;
+        
     }else {
+        // 比赛数据
         static NSString * matchCellIndentifier = @"match";
         MatchTableViewCell * matchCell = [tableView dequeueReusableCellWithIdentifier:matchCellIndentifier forIndexPath:indexPath];
         if (matchCell == nil) {
             matchCell = [[MatchTableViewCell alloc]init];
         }
-        NSDictionary * dict = _matchArray[indexPath.section - 1][indexPath.row];
+        
+        NSDictionary * dict = self.matchArray[indexPath.section - 1][indexPath.row];
         NSString * time = dict[@"match_time"];
-        // NSLog(@"%ld", time.integerValue);
         NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:time.integerValue];
-        // NSLog(@"date:%@", date);
         NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"HH:mm";
         NSString * dateString = [formatter stringFromDate:date];
@@ -206,7 +199,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section != 0) {
-        NSDictionary * dateDic = [_matchArray[section - 1] firstObject];
+        NSDictionary * dateDic = [self.matchArray[section - 1] firstObject];
         NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:[dateDic[@"match_time"] integerValue]];
         NSDateFormatter * df = [[NSDateFormatter alloc]init];
         df.dateFormat = @"yyyy-MM-dd EEEE";
@@ -220,7 +213,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section != 0) {
-        NSDictionary * dateDic = [_matchArray[section - 1] firstObject];
+        NSDictionary * dateDic = [self.matchArray[section - 1] firstObject];
         NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:[dateDic[@"match_time"] integerValue]];
         NSDateFormatter * df = [[NSDateFormatter alloc]init];
         df.dateFormat = @"yyyy-MM-dd EEEE";
@@ -230,6 +223,7 @@
         label.backgroundColor = [UIColor colorWithRed:0.603 green:0.834 blue:0.570 alpha:1.000];
         label.font = [UIFont systemFontOfSize:13];
         label.text = [NSString stringWithFormat:@"   %@", headerTitle];
+        label.textColor = [UIColor whiteColor];
         return label;
     }else {
         return nil;
@@ -254,6 +248,35 @@
             scrollView.contentOffset = CGPointMake(mScreen_bounds.size.width, 0);
         }
     }
+}
+
+#pragma mark -- 懒加载
+- (UITableView *)matchTableView {
+    if (_matchTableView == nil) {
+        _matchTableView = [[UITableView alloc]initWithFrame:mScreen_bounds style:(UITableViewStylePlain)];
+    }
+    return _matchTableView;
+}
+// 存放赛事数组的数组
+- (NSMutableArray *)matchArray {
+    if (_matchArray == nil) {
+        _matchArray = [NSMutableArray array];
+    }
+    return _matchArray;
+}
+// 存放图片数据的数组
+- (NSMutableArray *)photoArray {
+    if (_photoArray == nil) {
+        _photoArray = [NSMutableArray array];
+    }
+    return _photoArray;
+}
+// 存放时间的数组
+- (NSMutableArray *)timeArray {
+    if (_timeArray == nil) {
+        _timeArray = [NSMutableArray array];
+    }
+    return _timeArray;
 }
 
 - (void)didReceiveMemoryWarning {
