@@ -18,8 +18,8 @@
 @implementation NewsTableViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
-//    self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
 }
 
 - (void)viewDidLoad {

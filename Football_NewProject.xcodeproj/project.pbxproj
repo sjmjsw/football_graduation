@@ -201,9 +201,9 @@
 		0F477BBB1CA4DBE100B33D6D /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
 		0F477BBD1CA4DD8E00B33D6D /* MatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModel.h; sourceTree = "<group>"; };
 		0F477BBE1CA4DD8E00B33D6D /* MatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchModel.m; sourceTree = "<group>"; };
-		0F64098B1CF7464E0027B7EE /* football.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = football.png; sourceTree = "<group>"; };
-		0F64098C1CF7464E0027B7EE /* bar_graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_graph.png; sourceTree = "<group>"; };
-		0F64098D1CF7464E0027B7EE /* Trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trophy.png; sourceTree = "<group>"; };
+		0F64098B1CF7464E0027B7EE /* football.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = football.png; path = ../../football.png; sourceTree = "<group>"; };
+		0F64098C1CF7464E0027B7EE /* bar_graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_graph.png; path = ../../bar_graph.png; sourceTree = "<group>"; };
+		0F64098D1CF7464E0027B7EE /* Trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Trophy.png; path = ../../Trophy.png; sourceTree = "<group>"; };
 		0F6B4A121CCDD58F0002F1B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0F6B4A141CCDD5B50002F1B6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		0F6B4A151CCDD5B50002F1B6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -302,9 +302,6 @@
 		0F042EAF1C9BFC6A00DA48E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0F64098B1CF7464E0027B7EE /* football.png */,
-				0F64098C1CF7464E0027B7EE /* bar_graph.png */,
-				0F64098D1CF7464E0027B7EE /* Trophy.png */,
 				0F042EBB1C9BFC6A00DA48E1 /* Assets.xcassets */,
 				0F042EBD1C9BFC6A00DA48E1 /* LaunchScreen.storyboard */,
 				0F042EC01C9BFC6A00DA48E1 /* Info.plist */,
@@ -435,6 +432,9 @@
 		0F042EF01C9BFDD500DA48E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0F64098B1CF7464E0027B7EE /* football.png */,
+				0F64098C1CF7464E0027B7EE /* bar_graph.png */,
+				0F64098D1CF7464E0027B7EE /* Trophy.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

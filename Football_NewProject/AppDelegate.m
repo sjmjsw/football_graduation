@@ -61,14 +61,14 @@
 - (void)checkNetworkStatus {
     if ([[ReachabilityManager sharedManager].wifi currentReachabilityStatus]) {
         [ReachabilityManager sharedManager].havingNet = YES;
-        NSLog(@"wifi");
+        NSLog(@"wifi, %s, %d", __FUNCTION__, __LINE__);
     }else if ([[ReachabilityManager sharedManager].dataTraffic currentReachabilityStatus]) {
         [ReachabilityManager sharedManager].havingNet = YES;
-        NSLog(@"流量");
+        NSLog(@"流量, %s, %d", __FUNCTION__, __LINE__);
     }else {
         [ReachabilityManager sharedManager].havingNet = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NetworkStatusIsNo" object:nil];
-        NSLog(@"没网");
+        NSLog(@"没网, %s, %d", __FUNCTION__, __LINE__);
     }
 }
 
