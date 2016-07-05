@@ -11,10 +11,6 @@
 @interface NewsContentViewController () {
     UIActivityIndicatorView * _indicatorView;
 }
-
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *publish_timeLabel;
 @property (weak, nonatomic) IBOutlet UITextView *myTextView;
 
 @end
@@ -22,6 +18,7 @@
 @implementation NewsContentViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     NSArray * subViewArr = self.navigationController.navigationBar.subviews;
     for (UIView * view in subViewArr) {
         if (view.class == [UISegmentedControl class]) {
@@ -60,8 +57,7 @@
         if (responseObj) {
             weakSelf.myTextView.editable = YES;
             NSDictionary * dict = responseObj[@"data"];
-            weakSelf.titleLabel.text = dict[@"title"];
-            weakSelf.sourceLabel.text = dict[@"source"];
+            
             NSString * htmlStr = dict[@"body"];
             NSMutableAttributedString * mAttStr = [[NSMutableAttributedString alloc]initWithData:[htmlStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:nil];
             [mAttStr beginEditing];
@@ -74,6 +70,13 @@
             // 更改内容的字体
             NSRange sourceRange = NSMakeRange([titleArray.firstObject length], mAttStr.length - [titleArray.firstObject length]);
             [mAttStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Thin" size:15.0f] range:sourceRange];
+            
+            [mAttStr enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, mAttStr.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+                NSTextAttachment *textAttachment = (NSTextAttachment *)value;
+                CGFloat division = (mScreen_bounds.size.width - 16) / textAttachment.bounds.size.width;
+                textAttachment.bounds = CGRectMake(textAttachment.bounds.origin.x, textAttachment.bounds.origin.y, mScreen_bounds.size.width - 16, textAttachment.bounds.size.height * division);
+                // NSLog(@"%@", textAttachment);
+            }];
             
             weakSelf.myTextView.attributedText = mAttStr;
             weakSelf.myTextView.editable = NO;

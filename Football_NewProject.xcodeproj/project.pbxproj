@@ -58,6 +58,7 @@
 		0F477BB61CA4D8B500B33D6D /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F477BB41CA4D8B500B33D6D /* NewsTableViewCell.xib */; };
 		0F477BBC1CA4DBE100B33D6D /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F477BBB1CA4DBE100B33D6D /* NewsModel.m */; };
 		0F477BBF1CA4DD8E00B33D6D /* MatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F477BBE1CA4DD8E00B33D6D /* MatchModel.m */; };
+		0F5822281D2B8B5E00A2D911 /* VideosContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5822271D2B8B5E00A2D911 /* VideosContentViewController.m */; };
 		0F64098E1CF7464E0027B7EE /* football.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F64098B1CF7464E0027B7EE /* football.png */; };
 		0F64098F1CF7464E0027B7EE /* bar_graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F64098C1CF7464E0027B7EE /* bar_graph.png */; };
 		0F6409901CF7464E0027B7EE /* Trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F64098D1CF7464E0027B7EE /* Trophy.png */; };
@@ -224,6 +225,8 @@
 		0F477BBB1CA4DBE100B33D6D /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
 		0F477BBD1CA4DD8E00B33D6D /* MatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModel.h; sourceTree = "<group>"; };
 		0F477BBE1CA4DD8E00B33D6D /* MatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchModel.m; sourceTree = "<group>"; };
+		0F5822261D2B8B5E00A2D911 /* VideosContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideosContentViewController.h; sourceTree = "<group>"; };
+		0F5822271D2B8B5E00A2D911 /* VideosContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideosContentViewController.m; sourceTree = "<group>"; };
 		0F64098B1CF7464E0027B7EE /* football.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = football.png; path = ../../football.png; sourceTree = "<group>"; };
 		0F64098C1CF7464E0027B7EE /* bar_graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_graph.png; path = ../../bar_graph.png; sourceTree = "<group>"; };
 		0F64098D1CF7464E0027B7EE /* Trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Trophy.png; path = ../../Trophy.png; sourceTree = "<group>"; };
@@ -692,6 +695,8 @@
 			children = (
 				0F7229AB1CA3C68700CD2402 /* VideosTableViewController.h */,
 				0F7229AC1CA3C68700CD2402 /* VideosTableViewController.m */,
+				0F5822261D2B8B5E00A2D911 /* VideosContentViewController.h */,
+				0F5822271D2B8B5E00A2D911 /* VideosContentViewController.m */,
 			);
 			name = Videos;
 			sourceTree = "<group>";
@@ -1001,6 +1006,7 @@
 				0FE456A11D12437A0002285A /* MJRefreshNormalHeader.m in Sources */,
 				0F7229AA1CA3C67D00CD2402 /* NewsTableViewController.m in Sources */,
 				0FE456A21D12437A0002285A /* MJRefreshStateHeader.m in Sources */,
+				0F5822281D2B8B5E00A2D911 /* VideosContentViewController.m in Sources */,
 				0F042F671C9C0CA500DA48E1 /* UIAlertView+AFNetworking.m in Sources */,
 				0FE4569D1D12437A0002285A /* MJRefreshBackGifFooter.m in Sources */,
 				0F042F1F1C9BFDD500DA48E1 /* UIButton+WebCache.m in Sources */,

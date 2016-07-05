@@ -26,6 +26,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     _segmentControl.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.487 green:0.863 blue:0.561 alpha:1.000];
@@ -34,6 +35,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
     _segmentControl.hidden = YES;
 }
 

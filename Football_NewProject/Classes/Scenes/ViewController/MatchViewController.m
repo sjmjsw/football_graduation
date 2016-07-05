@@ -36,6 +36,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = YES;
     if (self.isFirst == NO) {
         self.edgesForExtendedLayout = UIRectEdgeAll;
