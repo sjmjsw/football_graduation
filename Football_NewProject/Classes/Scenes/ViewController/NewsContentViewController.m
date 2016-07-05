@@ -8,7 +8,9 @@
 
 #import "NewsContentViewController.h"
 
-@interface NewsContentViewController ()
+@interface NewsContentViewController () {
+    UIActivityIndicatorView * _indicatorView;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
@@ -30,19 +32,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 刷新小菊花
+    _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _indicatorView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 50, [UIScreen mainScreen].bounds.size.height / 2 - 130, 100, 100);
+    _indicatorView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_indicatorView];
     self.navigationController.navigationBar.translucent = NO;
     NSString * urlStr = [NSString stringWithFormat:@"http://kapi.zucaitong.com/news/detail?id=%@", self.myId];
-    [self connectToGainDataWithURL:urlStr];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self connectToGainDataWithURL:urlStr];
+    });
+    
     UIBarButtonItem * backItem = [[UIBarButtonItem alloc]initWithTitle:@"回去" style:UIBarButtonItemStylePlain target:self action:@selector(backItemAction:)];
     backItem.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
 - (void)backItemAction:(UIBarButtonItem *)sender {
+    [_indicatorView stopAnimating];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)connectToGainDataWithURL:(NSString *)url {
+    [_indicatorView startAnimating];
     __weak typeof(self)weakSelf = self;
     [[ConnectManager sharedManager] getDataWithURL:url params:nil success:^(id responseObj) {
         if (responseObj) {
@@ -53,23 +65,19 @@
             NSString * htmlStr = dict[@"body"];
             NSMutableAttributedString * mAttStr = [[NSMutableAttributedString alloc]initWithData:[htmlStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:nil];
             [mAttStr beginEditing];
-            // 为了获取字符串长度和位置，更变字体
-            NSString * title = dict[@"title"];
-            NSString * source = dict[@"source"];
-            NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:[dict[@"publish_time"] integerValue]];
-            NSDateFormatter * df = [[NSDateFormatter alloc]init];
-            df.dateFormat = @"yyyy-MM-dd";
-            NSString * dateStr = [df stringFromDate:date];
-            weakSelf.publish_timeLabel.text = dateStr;
-            NSRange titleRange = NSMakeRange(0, title.length);
+            
+            NSArray *titleArray = [mAttStr.description componentsSeparatedByString:@"{"];
+            // 更改标题的字体
+            NSRange titleRange = NSMakeRange(0, [titleArray.firstObject length]);
             NSLog(@"%@, %lu", mAttStr, mAttStr.length);
-            [mAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23.0f] range:titleRange];
-            NSRange sourceRange = NSMakeRange(title.length + 1, title.length + source.length + dateStr.length);
-            [mAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13.0f] range:sourceRange];
-            NSRange contentRange = NSMakeRange(title.length + source.length + dateStr.length + 1, mAttStr.string.length - title.length - source.length - dateStr.length - 1);
-            [mAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:contentRange];
+            [mAttStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"TrebuchetMS" size:25.0f] range:titleRange];
+            // 更改内容的字体
+            NSRange sourceRange = NSMakeRange([titleArray.firstObject length], mAttStr.length - [titleArray.firstObject length]);
+            [mAttStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Thin" size:15.0f] range:sourceRange];
+            
             weakSelf.myTextView.attributedText = mAttStr;
             weakSelf.myTextView.editable = NO;
+            [_indicatorView stopAnimating];
         }
     } failure:^(NSError *error) {
         

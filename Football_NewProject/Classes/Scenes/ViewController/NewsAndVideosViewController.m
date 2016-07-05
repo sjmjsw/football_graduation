@@ -10,11 +10,7 @@
 #import "NewsTableViewController.h"
 #import "VideosTableViewController.h"
 
-@interface NewsAndVideosViewController () {
-//    NewsTableViewController * _newsVC;
-//    VideosTableViewController * _videosVC;
-    // UISegmentedControl * _segmentControl;
-}
+@interface NewsAndVideosViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentControl;
 @property (nonatomic, strong) NewsTableViewController *newsVC;
 @property (nonatomic, strong) VideosTableViewController *videosVC;
@@ -23,12 +19,14 @@
 @implementation NewsAndVideosViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.487 green:0.863 blue:0.561 alpha:1.000];
     self.segmentControl.hidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
     self.segmentControl.hidden = YES;
 }
 

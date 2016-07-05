@@ -16,49 +16,58 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-HL-li1">
-                        <rect key="frame" x="5" y="5" width="85" height="64"/>
+                        <rect key="frame" x="518" y="10" width="72" height="54"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="RDT-HL-li1" secondAttribute="height" multiplier="4:3" id="hKA-GF-kWn"/>
+                            <constraint firstAttribute="width" secondItem="RDT-HL-li1" secondAttribute="height" multiplier="4:3" id="Z78-xI-2ks"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twh-LY-j0J">
-                        <rect key="frame" x="100" y="5" width="490" height="30"/>
+                        <rect key="frame" x="10" y="10" width="498" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="IpR-7L-50c"/>
+                            <constraint firstAttribute="height" constant="30" id="OuL-bY-NV9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="916-eI-hVp">
-                        <rect key="frame" x="100" y="40" width="490" height="29"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZC-FT-S8M">
                         <rect key="frame" x="0.0" y="73" width="600" height="1"/>
                         <color key="backgroundColor" red="0.5146188655274867" green="0.79929887820512824" blue="0.50728932679053396" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="wkF-4A-REI"/>
+                            <constraint firstAttribute="height" constant="1" id="4vn-VB-1Kh"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="916-eI-hVp">
+                        <rect key="frame" x="10" y="41" width="498" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="916-eI-hVp" firstAttribute="leading" secondItem="RDT-HL-li1" secondAttribute="trailing" constant="10" id="HdC-dV-8T4"/>
-                    <constraint firstItem="916-eI-hVp" firstAttribute="top" secondItem="Twh-LY-j0J" secondAttribute="bottom" constant="5" id="Ks4-Nm-SMw"/>
-                    <constraint firstItem="RDT-HL-li1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="XMb-Hx-MIY"/>
-                    <constraint firstAttribute="bottom" secondItem="916-eI-hVp" secondAttribute="bottom" constant="5" id="eaP-JM-xIs"/>
-                    <constraint firstItem="Twh-LY-j0J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="fAz-w4-LSr"/>
-                    <constraint firstItem="BZC-FT-S8M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fbb-dJ-wRx"/>
-                    <constraint firstItem="RDT-HL-li1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="nkB-sS-WlY"/>
-                    <constraint firstAttribute="bottom" secondItem="RDT-HL-li1" secondAttribute="bottom" constant="5" id="oDO-2N-WT0"/>
-                    <constraint firstAttribute="trailing" secondItem="BZC-FT-S8M" secondAttribute="trailing" id="okX-5b-nEW"/>
-                    <constraint firstAttribute="bottom" secondItem="BZC-FT-S8M" secondAttribute="bottom" id="sta-SS-xOd"/>
-                    <constraint firstItem="Twh-LY-j0J" firstAttribute="leading" secondItem="RDT-HL-li1" secondAttribute="trailing" constant="10" id="ta0-6f-l4W"/>
-                    <constraint firstAttribute="trailing" secondItem="916-eI-hVp" secondAttribute="trailing" constant="10" id="u2Q-go-2A9"/>
-                    <constraint firstAttribute="trailing" secondItem="Twh-LY-j0J" secondAttribute="trailing" constant="10" id="zuE-AD-7AR"/>
+                    <constraint firstItem="916-eI-hVp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="2Lk-UO-eeG"/>
+                    <constraint firstItem="RDT-HL-li1" firstAttribute="leading" secondItem="Twh-LY-j0J" secondAttribute="trailing" constant="10" id="CIn-0M-P9E"/>
+                    <constraint firstAttribute="bottom" secondItem="BZC-FT-S8M" secondAttribute="bottom" id="E7h-Jg-iBf"/>
+                    <constraint firstItem="Twh-LY-j0J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="JoZ-Lf-7sc"/>
+                    <constraint firstAttribute="trailing" secondItem="BZC-FT-S8M" secondAttribute="trailing" id="MO7-rT-2JF"/>
+                    <constraint firstItem="Twh-LY-j0J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="RKc-2l-cv5"/>
+                    <constraint firstItem="RDT-HL-li1" firstAttribute="leading" secondItem="916-eI-hVp" secondAttribute="trailing" constant="10" id="VLQ-Wa-c5g"/>
+                    <constraint firstAttribute="trailing" secondItem="RDT-HL-li1" secondAttribute="trailing" constant="10" id="YPb-1o-m25"/>
+                    <constraint firstAttribute="bottom" secondItem="RDT-HL-li1" secondAttribute="bottom" constant="10" id="bhH-Ed-ixr"/>
+                    <constraint firstItem="BZC-FT-S8M" firstAttribute="top" secondItem="916-eI-hVp" secondAttribute="bottom" constant="10" id="gKh-hL-QMN"/>
+                    <constraint firstItem="RDT-HL-li1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="gai-hy-li2"/>
+                    <constraint firstItem="BZC-FT-S8M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hEp-WD-r7Y"/>
+                    <constraint firstItem="916-eI-hVp" firstAttribute="top" secondItem="Twh-LY-j0J" secondAttribute="bottom" constant="1" id="rKB-Gq-2PA"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="gKh-hL-QMN"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="916-eI-hVp" id="VUG-jM-l30"/>

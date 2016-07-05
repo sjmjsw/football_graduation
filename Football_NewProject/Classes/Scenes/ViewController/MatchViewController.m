@@ -9,6 +9,8 @@
 #import "MatchViewController.h"
 #import "PhotoTableViewCell.h"
 #import "MatchTableViewCell.h"
+#import "AliveViewController.h"
+#import "MJRefresh.h"
 
 @interface MatchViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, assign) BOOL isFirst;
@@ -19,6 +21,11 @@
 @property (nonatomic, strong) NSMutableArray *photoArray;
 // 存放时间的数组
 @property (nonatomic, strong) NSMutableArray *timeArray;
+@property (nonatomic, strong) UIPageControl *myPageControl;
+// 轮播图timer
+@property (nonatomic, strong) NSTimer *timer;
+// 实时刷新timer
+@property (nonatomic, strong) NSTimer *refreshTimer;
 
 @end
 
@@ -46,8 +53,20 @@
     // 注册cell
     [self.matchTableView registerNib:[UINib nibWithNibName:@"PhotoTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"photo"];
     [self.matchTableView registerNib:[UINib nibWithNibName:@"MatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"match"];
+    [self headerRefresh];
     // 请求数据
     [self connectToGainMatchData];
+}
+
+// 下拉刷新
+- (void)headerRefresh {
+    __weak UITableView *refreshTableView = self.matchTableView;
+    refreshTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self connectToGainMatchData];
+        [refreshTableView.header endRefreshing];
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    refreshTableView.header.automaticallyChangeAlpha = YES;
 }
 
 - (void)connectToGainMatchData {
@@ -109,6 +128,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        
+        // 轮播图定时器
+        if (self.timer == nil) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+            NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+            [runLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        }
+        
         // 轮播图
         static NSString * photoCellIndentifier = @"photo";
         PhotoTableViewCell * photoCell = [tableView dequeueReusableCellWithIdentifier:photoCellIndentifier forIndexPath:indexPath];
@@ -119,7 +146,7 @@
         [self photoScrollView:photoCell.photoScrollView];
         photoCell.photoScrollView.showsVerticalScrollIndicator = NO;
         photoCell.photoScrollView.showsHorizontalScrollIndicator = NO;
-        __weak typeof(self)weakSelf = self;
+        __weak MatchViewController *weakSelf = self;
         [[ConnectManager sharedManager] getDataWithURL:@"http://kapi.zucaitong.com/ad/banner" params:nil success:^(id responseObj) {
             if (responseObj) {
                 weakSelf.photoArray = responseObj[@"data"];
@@ -132,15 +159,15 @@
                 
                 if (weakSelf.photoArray.count != 0) {
                     
-                    photoCell.photoScrollView.contentSize = CGSizeMake(mScreen_bounds.size.width * (picArray.count + 1), photoCell.photoScrollView.contentSize.height);
+                    photoCell.photoScrollView.contentSize = CGSizeMake(mScreen_bounds.size.width * (picArray.count + 2), photoCell.photoScrollView.contentSize.height);
                     
                     UIImageView * imageView0 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, mScreen_bounds.size.width, photoCell.photoScrollView.contentSize.height)];
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [imageView0 sd_setImageWithURL:[NSURL URLWithString:picArray[picArray.count - 2]] placeholderImage:[UIImage imageNamed:@""] options:0];
+                        [imageView0 sd_setImageWithURL:[NSURL URLWithString:picArray.lastObject] placeholderImage:[UIImage imageNamed:@""] options:0];
                     });
                     [photoCell.photoScrollView addSubview:imageView0];
                     NSInteger j = 1;
-                    for (NSInteger i = 0; i < picArray.count - 1; i++) {
+                    for (NSInteger i = 0; i < picArray.count; i++) {
                         NSString * picStr = picArray[i];
                         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(mScreen_bounds.size.width * j, 0, mScreen_bounds.size.width, photoCell.photoScrollView.contentSize.height)];
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -156,10 +183,11 @@
                     [photoCell.photoScrollView addSubview:imageView1];
                 }
             }
+            
+            
         } failure:^(NSError *error) {
             
         }];
-        
         return photoCell;
         
     }else {
@@ -170,12 +198,12 @@
             matchCell = [[MatchTableViewCell alloc]init];
         }
         
-        NSDictionary * dict = self.matchArray[indexPath.section - 1][indexPath.row];
-        NSString * time = dict[@"match_time"];
-        NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:time.integerValue];
-        NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+        NSDictionary *dict = self.matchArray[indexPath.section - 1][indexPath.row];
+        NSString *time = dict[@"match_time"];
+        NSDate *date = [[NSDate alloc]initWithTimeIntervalSince1970:time.integerValue];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"HH:mm";
-        NSString * dateString = [formatter stringFromDate:date];
+        NSString *dateString = [formatter stringFromDate:date];
         
         matchCell.timeLabel.text = dateString;
         NSDictionary * eventDic = dict[@"event"];
@@ -184,6 +212,7 @@
         NSDictionary * homeDic = teamDic[@"home"];
         NSDictionary * awayDic = teamDic[@"away"];
         matchCell.homeTeamLabel.text = homeDic[@"name"];
+        
         matchCell.awayTeamLabel.text = awayDic[@"name"];
         NSString * liveStr = [NSString string];
         for (NSString * str in dict[@"live"]) {
@@ -192,8 +221,19 @@
         }
         matchCell.liveLabel.text = liveStr;
         matchCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        matchCell.scoreLabel.text = [NSString stringWithFormat:@"%@:%@", dict[@"home_score"], dict[@"away_score"]];
         
         return matchCell;
+    }
+}
+
+#pragma mark -- 给轮播图加定时器
+- (void)timerAction {
+    PhotoTableViewCell *cell = [self.matchTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    if (cell.photoScrollView.contentOffset.x > 0 && cell.photoScrollView.contentOffset.x < cell.photoScrollView.contentSize.width - mScreen_bounds.size.width * 2) {
+        cell.photoScrollView.contentOffset = CGPointMake(cell.photoScrollView.contentOffset.x + mScreen_bounds.size.width, 0);
+    }else if (cell.photoScrollView.contentOffset.x == cell.photoScrollView.contentSize.width - mScreen_bounds.size.width * 2) {
+        cell.photoScrollView.contentOffset = CGPointMake(mScreen_bounds.size.width, 0);
     }
 }
 
@@ -213,8 +253,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section != 0) {
-        NSDictionary * dateDic = [self.matchArray[section - 1] firstObject];
-        NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:[dateDic[@"match_time"] integerValue]];
+        NSDictionary *dateDic = [self.matchArray[section - 1] firstObject];
+        NSDate *date = [[NSDate alloc]initWithTimeIntervalSince1970:[dateDic[@"match_time"] integerValue]];
         NSDateFormatter * df = [[NSDateFormatter alloc]init];
         df.dateFormat = @"yyyy-MM-dd EEEE";
         NSString * headerTitle = [df stringFromDate:date];
@@ -248,6 +288,13 @@
             scrollView.contentOffset = CGPointMake(mScreen_bounds.size.width, 0);
         }
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *dict = self.matchArray[indexPath.section - 1][indexPath.row];
+    AliveViewController *AliveVC = [[AliveViewController alloc]init];
+    AliveVC.myId = [NSString stringWithFormat:@"%@", dict[@"id"]];
+    [self.navigationController pushViewController:AliveVC animated:YES];
 }
 
 #pragma mark -- 懒加载

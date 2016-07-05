@@ -10,8 +10,13 @@
 #import "NewsTableViewCell.h"
 #import "NewsModel.h"
 #import "NewsContentViewController.h"
+#import "MJRefresh.h"
 
-@interface NewsTableViewController ()
+@interface NewsTableViewController () {
+    NSInteger _myPage;
+    // 菊花
+    UIActivityIndicatorView * _indicatorView;
+}
 @property (nonatomic, strong) NSMutableArray *allDataArray;
 @end
 
@@ -27,14 +32,27 @@
     self.navigationController.navigationBar.translucent = NO;
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"news"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    // 刷新小菊花
+    _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _indicatorView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 50, [UIScreen mainScreen].bounds.size.height / 2 - 130, 100, 100);
+    _indicatorView.backgroundColor = [UIColor blackColor];
+    [self.tableView addSubview:_indicatorView];
     // 请求数据
-    [self connectToGainData];
+    _myPage = 1;
+    [self connectToGainDataWithPage:1];
+    // 下拉刷新
+    [self headerRefresh];
+    // 上拉加载
+    [self footerRefresh];
 }
 
-- (void)connectToGainData {
+- (void)connectToGainDataWithPage:(NSInteger)page {
+    [_indicatorView startAnimating];
     __weak typeof(self)weakSelf = self;
-    [[ConnectManager sharedManager] getDataWithURL:@"http://kapi.zucaitong.com/news?last_id=0&page_size=20&type=1" params:nil success:^(id responseObj) {
+    [[ConnectManager sharedManager] getDataWithURL:[NSString stringWithFormat:@"http://kapi.zucaitong.com/news?last_id=0&page_size=%ld&type=1", 20 * page] params:nil success:^(id responseObj) {
         if (responseObj) {
+            self.allDataArray = [NSMutableArray array];
             NSArray * arr = responseObj[@"data"];
             for (NSDictionary * dic in arr) {
                 NewsModel * nModel = [[NewsModel alloc]init];
@@ -47,9 +65,39 @@
                 [weakSelf.allDataArray addObject:nModel];
             }
             [self.tableView reloadData];
+            [_indicatorView stopAnimating];
+            [_indicatorView setHidesWhenStopped:YES];
         }
     } failure:^(NSError *error) {
         
+    }];
+}
+
+- (void)headerRefresh {
+    __weak UITableView * tableView = self.tableView;
+    tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [_indicatorView startAnimating];
+        _myPage = 1;
+        [self connectToGainDataWithPage:1];
+        // 结束刷新
+        [tableView.header endRefreshing];
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.header.automaticallyChangeAlpha = YES;
+}
+
+- (void)footerRefresh {
+    __weak UITableView * tableView = self.tableView;
+    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [_indicatorView startAnimating];
+        _myPage += 1;
+        [self connectToGainDataWithPage:_myPage];
+        if (_myPage == 5) {
+            [tableView.footer endRefreshingWithNoMoreData];
+        }else {
+            [tableView.footer endRefreshing];
+        }
     }];
 }
 

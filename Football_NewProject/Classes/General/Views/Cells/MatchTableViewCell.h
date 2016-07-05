@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *homeTeamLabel;
 @property (weak, nonatomic) IBOutlet UILabel *awayTeamLabel;
 @property (weak, nonatomic) IBOutlet UILabel *liveLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
